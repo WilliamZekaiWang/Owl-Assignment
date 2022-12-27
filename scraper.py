@@ -7,7 +7,7 @@ def login():
     @return: list, each course with
     """
     # opens the western login for owl and prompts login
-    details = {"eid": input("User: "),
+    details = {"eid": input("Please login to owl\nUser: "),
                "pw": input("Pass: ")
                }
     with rq.session() as s:
@@ -48,8 +48,11 @@ def find_assignment_url(html):
 
 def extract_assignment(html, dic):
     """
-
-    @return:
+    given bs4 parsed html to the assignments, update dic to {title : [status, date opened, date closed]} for each
+    assignment in the course
+    @param: html, parsed html bs4 where you found <'td'>
+    @param: dic, empty dictionary (
+    should be a nested dictionary to the specific course) @return: void
     """
     current_assignment = ""
     for row in html:
@@ -59,4 +62,3 @@ def extract_assignment(html, dic):
             dic.update({current_assignment: []})
         else:
             dic[current_assignment].append(row.text.replace('\n', "").replace('\t','').strip())
-    return dic
