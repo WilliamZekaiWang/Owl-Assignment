@@ -17,7 +17,7 @@ def login():
         # use bs4 to find links to all favourited sites
         soup = BeautifulSoup(data.text, 'html.parser')
         fav_urls = find_assignment_url(soup.find_all('a', class_="link-container", href=True))
-        print("Logged in and Courses Found")
+        print("\nLogged in and Courses Found\n")
 
         # go through each url in courses and find assignments and add them to a dictionary
         course_dic = {}
@@ -33,7 +33,7 @@ def login():
         if course_dic:
             return course_dic
         else:
-            print("No Favourited Classes have assignments")
+            print("No Favourited Classes Have Assignments")
             exit()
 
 def find_assignment_url(html):
