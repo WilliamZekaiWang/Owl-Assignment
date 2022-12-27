@@ -1,5 +1,6 @@
 import requests as rq
 from bs4 import BeautifulSoup
+from dict_to_dataframe import *
 
 def login():
     """
@@ -7,7 +8,7 @@ def login():
     @return: list, each course with
     """
     # opens the western login for owl and prompts login
-    details = {"eid": input("Please login to owl\nUser: "),
+    details = {"eid": input("\nPlease login to owl\nUser: "),
                "pw": input("Pass: ")
                }
     with rq.session() as s:

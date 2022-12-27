@@ -1,7 +1,7 @@
 import numpy as np
 import re
 import datetime
-
+import pandas as pd
 
 def translate_date(string):
     """
@@ -28,3 +28,17 @@ def convert_month(month):
            "Jul": "07", "Aug": "08", "Sep": "09",
            "Oct": "10", "Nov": "11", "Dec": "12"}
     return dic[month]
+
+def change_to_df(data):
+    # Turn each course in the dictionary to a dataframe because I like working with dfs more
+    dfs = []
+    for key in data:
+        key = pd.DataFrame(data[key], index=['Status', 'Open Date', 'Due Date']).T
+        dfs.append(key)
+
+    for df in dfs:
+        for index, row in df.iterrows():
+            if row['Due Date'] != '':
+                row['Due Date'] = translate_date(row['Due Date'])
+            row['Open Date'] = translate_date(row['Open Date'])
+    return dfs

@@ -1,9 +1,10 @@
 from bs4 import BeautifulSoup
 import requests
 from scraper import *
-from utils import *
+from dict_to_dataframe import *
 import datetime
 from datetime import datetime
+import pandas as pd
 
 
 def main():
@@ -11,10 +12,12 @@ def main():
     print(f"The current date and time is: {current_day}")
     current_day = current_day.split(" ")
 
-    data = login()
-    for course in data:
-        for assignment in course:
-            assignment[1] = assignment[1]
+    dfs = change_to_df(login())
+    print(dfs)
+    # Change each date from owl's format into one compatible with datetime
+
+
+
 
 if __name__ == "__main__":
     main()
