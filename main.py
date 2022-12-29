@@ -1,7 +1,6 @@
 from scraper import *
 from dict_to_dataframe import *
 import datetime
-from datetime import datetime
 from utils import *
 
 def main():
@@ -12,11 +11,11 @@ def main():
 
     # get data from owl and analyze the df to see which assignments are upcoming
     dfs = change_to_df(login())
+    todo = {'Today': {},
+            'Within 7 Days': {},
+            'Greater Than 7 Days': {}
+            }
     for df in dfs:
-        todo = {'Within 7 Days': {},
-                'Greater Than 7 Days': {},
-                'Today': {}
-                }
         for index, assignment in enumerate(list(df.index.values)):
             if df['Due Date'][index] != "":
                 days = int(days_away(current_day[0], df['Due Date'][index][0]).split(" ")[0])
@@ -36,8 +35,9 @@ def display_assignments(dic):
     """
     displays on terminal the necessary information
     @param dic courses and assignment and prints them all pretty
-    @return:
+    @return: void
     """
+    print("Upcoming Assignments")
     for key, value in dic.items():
         if value:
             print(f"{key}:")
