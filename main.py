@@ -30,9 +30,14 @@ def main():
                     break
 
     display_assignments(todo)
+    exit()
 
 def display_assignments(dic):
-
+    """
+    displays on terminal the necessary information
+    @param dic courses and assignment and prints them all pretty
+    @return:
+    """
     for key, value in dic.items():
         if value:
             print(f"{key}:")
