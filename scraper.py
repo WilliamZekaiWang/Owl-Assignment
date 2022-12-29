@@ -16,8 +16,12 @@ def login():
 
         # use bs4 to find links to all favourited sites
         soup = BeautifulSoup(data.text, 'html.parser')
-        fav_urls = find_assignment_url(soup.find_all('a', class_="link-container", href=True))
-        print("\nLogged in and Courses Found\n")
+        try:
+            fav_urls = find_assignment_url(soup.find_all('a', class_="link-container", href=True))
+            print("\nLogged in and Courses Found\n")
+        except:
+            print("\nLogin Failed, Program Will Now Close")
+            exit()
 
         # go through each url in courses and find assignments and add them to a dictionary
         course_dic = {}
