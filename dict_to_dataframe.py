@@ -1,4 +1,3 @@
-import numpy as np
 import re
 import datetime
 import pandas as pd
@@ -30,11 +29,11 @@ def convert_month(month):
     return dic[month]
 
 def change_to_df(data):
-    # Turn each course in the dictionary to a dataframe because I like working with dfs more
+    # Turn each course in the dictionary to a dataframe
     dfs = []
     for key in data:
-        key = pd.DataFrame(data[key], index=['Status', 'Open Date', 'Due Date']).T
-        dfs.append(key)
+        course = pd.DataFrame(data[key], index=['Course', 'Status', 'Open Date', 'Due Date']).T
+        dfs.append(course)
 
     for df in dfs:
         for index, row in df.iterrows():

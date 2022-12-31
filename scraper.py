@@ -1,6 +1,5 @@
 import requests as rq
 from bs4 import BeautifulSoup
-from dict_to_dataframe import *
 
 def login():
     """
@@ -32,7 +31,7 @@ def login():
                 url = soup.find('a', title="Assignments - For posting, submitting, and grading assignments online",
                                 href=True)['href']
                 soup = BeautifulSoup(s.post(url).text, 'html.parser')
-                extract_assignment(soup.find('table', class_="table table-hover table-striped table-bordered assignmentsList").find_all('td'), course_dic[course])
+                extract_assignment(soup.find('table', class_="table table-hover table-striped table-bordered assignmentsList").find_all('td'), course_dic[course], course)
 
         if course_dic:
             return course_dic
@@ -51,10 +50,10 @@ def find_assignment_url(html):
     course_links.pop("Home")  # first link should be home, which isn't a class
     return course_links
 
-def extract_assignment(html, dic):
+def extract_assignment(html, dic, course):
     """
-    given bs4 parsed html to the assignments, update dic to {title : [status, date opened, date closed]} for each
-    assignment in the course
+    given bs4 parsed html to the assignments, update dic to {title : [course, status, date opened, date closes]} for
+    each assignment in the course
     @param: html, parsed html bs4 where you found <'td'>
     @param: dic, empty dictionary (
     should be a nested dictionary to the specific course) @return: void
@@ -64,6 +63,6 @@ def extract_assignment(html, dic):
         if row.find("a") != None:
             row = row.find("a")
             current_assignment = row.text.replace('\n', "").replace('\t','').strip()
-            dic.update({current_assignment: []})
+            dic.update({current_assignment: [course]})
         else:
             dic[current_assignment].append(row.text.replace('\n', "").replace('\t','').strip())
