@@ -7,7 +7,12 @@ def days_away(current, assignment):
     @param assignment: the date of the assingment in Y-M-D
     @return: The amount of days left in a string from datetime strip
     """
-    return str(datetime.strptime(assignment, "%Y-%m-%d") - datetime.strptime(current, "%Y-%m-%d"))
+    days = str(datetime.strptime(assignment, "%Y-%m-%d") - datetime.strptime(current, "%Y-%m-%d"))
+    if days == "0:00:00":
+        return "0 "
+    else:
+        return str(datetime.strptime(assignment, "%Y-%m-%d") - datetime.strptime(current, "%Y-%m-%d"))
+
 
 def hours_away(current, assignment):
     """

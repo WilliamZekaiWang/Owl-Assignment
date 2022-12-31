@@ -20,7 +20,7 @@ def owl_assignments():
             if df['Due Date'][index] != "":
                 days = int(days_away(current_day[0], df['Due Date'][index][0]).split(" ")[0])
                 if days == 0:
-                    todo['Today'].update({assignment: ((hours_away(current_day[1], df['Due Date'][index][1])) + "Hour(s)", df['Course'][index])})
+                    todo['Today'].update({assignment: ((hours_away(current_day[1], df['Due Date'][index][1])) + " Hour(s)", df['Course'][index])})
                 elif 0 <= days <= 7:
                     todo['Within 7 Days'].update({assignment: (str(days) + " Day(s)", df['Course'][index])})
                 elif days > 7:
