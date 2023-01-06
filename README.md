@@ -1,5 +1,6 @@
 # Owl-Assignments
-Script to remotely login to Western University's Online Learning Education Platform and see upcoming assignments in current courses
+Script to remotely login to Western University's Online Learning Education Platform and see upcoming assignments in current courses.
+
 Assignments will be displayed in the terminal and the amount of days/hours left to finish the assignment will be displayed as well
 
 # Installing and Running
