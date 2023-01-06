@@ -36,9 +36,7 @@ def display_assignments(dic):
     @param dic courses and assignment and prints them all pretty
     @return: void
     """
-    if not dic:
-        print("You have no upcoming assignments.\n")
-    print("Upcoming Assignments")
+    print("Upcoming Assignments\n")
     for key, value in dic.items():
         if value:
             print("-"*100)
@@ -46,6 +44,8 @@ def display_assignments(dic):
             for assignment, info in value.items():
                 print(f"   {info[1]}: {assignment}, due in {info[0]}")
             print("-" * 100)
+        else:
+            print(f"You have no assignments due {key}\n")
 
 if __name__ == "__main__":
     owl_assignments()
