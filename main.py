@@ -27,7 +27,6 @@ def owl_assignments():
                     todo['Greater Than 7 Days'].update({assignment: (str(days) + " Day(s)", df['Course'][index])})
                 else:
                     break  # they should be sorted by date already so no need to check later dates
-
     display_assignments(todo)
     exit()
 
@@ -37,6 +36,8 @@ def display_assignments(dic):
     @param dic courses and assignment and prints them all pretty
     @return: void
     """
+    if not dic:
+        print("You have no upcoming assignments.\n")
     print("Upcoming Assignments")
     for key, value in dic.items():
         if value:
